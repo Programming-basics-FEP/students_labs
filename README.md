@@ -1,4 +1,4 @@
-# student_labs
+# students_labs
 
 everyone should create their own branch
 
