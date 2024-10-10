@@ -3,7 +3,7 @@
 everyone should create their own branch
 
 # formatting
-branch name: NameSurname (as in your passport
+branch name: NameSurname (as in your passport)
  example: ArturLys
 
 solution folder: lab{lab number as written in the task}
