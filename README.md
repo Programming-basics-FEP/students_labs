@@ -1,6 +1,7 @@
 # students_labs
 
-everyone should create their own branch
+everyone should create their own branch:
+```git checkout -b "NameSurname"```
 
 # formatting
 branch name: NameSurname (as in your passport)
