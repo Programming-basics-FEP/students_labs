@@ -1,5 +1,8 @@
-
 # Students Labs
+
+## **Roadmap**
+
+[Copypaste](https://github.com/Programming-basics-FEP-11/students_labs.git)
 
 ## **Branch Naming**
 
@@ -47,9 +50,52 @@ Submit all your labs directly to **your** branch
 │       ├── lab6.pdf
 ```
 
+## **How to use .gitignore**
+
+1. Create `.gitignore`
+2. Add files to ignore
+
+- Example .gitignore file
+  
+   ```
+   README.md
+   *.docx
+   ```
+  ignores all docx files and README.md
+
 ## **Submission Guidelines**
 
 1. Create your branch
 2. Organize solutions in `lab{number}` folders
 3. Name files as specified
 4. Submit reports in PDF format
+
+
+## **Copypaste**
+
+
+### If you have SSH
+```bash
+git clone git@github.com:Programming-basics-FEP-11/students_labs.git
+```
+### HTTPS (default)
+```bash
+git clone https://github.com/Programming-basics-FEP-11/students_labs.git
+```
+
+### Create your branch
+```bash
+git checkout -b "NameSurname"
+```
+### Add files
+```bash
+git add .
+```
+### Commit
+```bash
+git commit -m "message"
+```
+### Push commit in your branch
+```bash
+git push origin "NameSurname"
+```
