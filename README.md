@@ -3,14 +3,14 @@
 
 ## **Branch Naming**
 
-Each student must create their own branch using their **last name** and **first** from your passport
+Each student must create their own branch using their **first** and **last name** from your passport
 
 ### Example:
 
-For **Lys Artur**, the branch is:
+For **Artur Lys**, the branch is:
 
 ```bash
-git checkout -b "LysArtur"
+git checkout -b "ArturLys"
 ```
 Submit all your labs directly to **your** branch
 
@@ -37,7 +37,7 @@ Submit all your labs directly to **your** branch
 ## **Example Structure**
 
 ```
-├── LysArtur/
+├── ArturLys/
 │   ├── lab5/
 │   │   ├── lab5_1.c
 │   │   ├── lab5_2.c
