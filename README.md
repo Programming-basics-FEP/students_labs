@@ -1,8 +1,6 @@
 # Students Labs
 
-## **Roadmap**
-
-[Copypaste](https://github.com/Programming-basics-FEP-11/students_labs.git)
+[Copypaste](https://github.com/Programming-basics-FEP-11/students_labs?tab=readme-ov-file#copypaste)
 
 ## **Branch Naming**
 
