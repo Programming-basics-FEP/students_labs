@@ -97,3 +97,7 @@ git commit -m "message"
 ```bash
 git push origin "NameSurname"
 ```
+### If you get an error, this might fix it
+```bash
+git remote set-url origin git@github.com:Programming-basics-FEP-11/students_labs.git
+```
