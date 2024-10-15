@@ -3,6 +3,7 @@
 #include <string.h>
 
 const char* nums[] = {
+  "",
   "Один",
   "Два",
   "Три",
@@ -12,10 +13,19 @@ const char* nums[] = {
   "Сім",
   "Вісім",
   "Дев'ять",
-  "Десять",
+  "Десять"
+};
+
+const char* nums_dd[] = {
   "Одинадцять",
   "Дванадцять",
-  "Тринадцять"
+  "Тринадцять",
+  "Чотирнадцять",
+  "П'ятнадцять",
+  "Шістнадцять",
+  "Сімнадцять",
+  "Вісімнадцять",
+  "Дев'ятнадцять",
 };
 
 const char* nums_d[] = {
@@ -88,19 +98,26 @@ void identTriangle(Triangle t) {
   if (hipo == katets) {
     printf("\nПрямокутний");
   } else if (hipo > katets) {
-    printf("\nГострий");
-  } else {
     printf("\nТупий");
+  } else {
+    printf("\nГострий");
   }
 }
 
 char* num_to_str(int num) {
   char* ans = (char *)malloc(50);
-  strcat(ans, nums_h[(int)(num/100)-1]);
+  strcat(ans, nums_h[(int)(num/100)]);
   strcat(ans, " ");
-  strcat(ans, nums_d[((num%100)/10)-1]);
-  strcat(ans, " ");
-  strcat(ans, nums[(num%10)-1]);
+
+  if (nums_d[(num%100)-1] > 10 && nums_d[(num%100)-1] < 20) {
+    strcat(ans, nums[(num%10)-1]);
+    strcat(ans, " ");
+  } else {
+    strcat(ans, nums_d[((num%100)/10)-1]);
+    strcat(ans, " ");
+  }
+
+  strcat(ans, nums[(num%10)]);
   strcat(ans, "\0");
   printf("%s", ans);
   free(ans);
