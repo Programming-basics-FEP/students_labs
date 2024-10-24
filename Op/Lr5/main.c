@@ -106,20 +106,27 @@ void identTriangle(Triangle t) {
 
 char* num_to_str(int num) {
   char* ans = (char *)malloc(50);
-  strcat(ans, nums_h[(int)(num/100)]);
+  ans[0] = '\0';
+
+  strcat(ans, nums_h[(num / 100) - 1]);
   strcat(ans, " ");
 
-  if (nums_d[(num%100)-1] > 10 && nums_d[(num%100)-1] < 20) {
-    strcat(ans, nums[(num%10)-1]);
-    strcat(ans, " ");
+  int last_two_digits = num % 100;
+  if (last_two_digits >= 11 && last_two_digits <= 19) {
+    strcat(ans, nums_dd[last_two_digits - 11]);
   } else {
-    strcat(ans, nums_d[((num%100)/10)-1]);
-    strcat(ans, " ");
+    if (last_two_digits >= 10) {
+      strcat(ans, nums_d[(last_two_digits / 10) - 1]);
+      strcat(ans, " ");
+    }
+
+    if (last_two_digits % 10 > 0) {
+      strcat(ans, nums[last_two_digits % 10]);
+    }
   }
 
-  strcat(ans, nums[(num%10)]);
   strcat(ans, "\0");
-  printf("%s", ans);
+  printf("%s\n", ans);
   free(ans);
 }
 

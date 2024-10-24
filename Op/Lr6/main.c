@@ -73,7 +73,7 @@ void task_three() {
 
 
 int main() {
-  setlocale(LC_ALL, "");
+    setlocale(LC_ALL, "");
     wchar_t user[100];
     wprintf(L"Введите строку: ");
     wscanf(L"%ls", user);
