@@ -1,35 +1,46 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
-double solveEquation(double N, double A, double left, double right, double epsilon) {
-    double middle;
+double equation(double x, int N, int A) { return N * x + A; }
 
-    while (fabs(right - left) > epsilon) {
-        middle = (left + right) / 2;
-        double value = N * middle + A;
+double bisection(double a, double b, int N, int A, double tol) {
+  double mid = 0;
 
-        if (value == 0) {
-            return middle;
-        } else if (value > 0) {
-            right = middle;
-        } else {
-            left = middle;
-        }
+  while ((b - a) / 2.0 > tol) {
+    mid = (a + b) / 2.0;
+    if (equation(mid, N, A) == 0.0) {
+      return mid; // точний розв'язок
+    } else if (equation(a, N, A) * equation(mid, N, A) < 0) {
+      b = mid;
+    } else {
+      a = mid;
     }
+  }
 
-    return middle;
+  return (a + b) / 2.0; // наближений розв'язок
 }
 
 int main() {
-    double N, A;
-    printf("Введіть ваш порядковий номер у журналі (N): ");
-    scanf("%lf", &N);
+  int N, A;
+  double tol = 1e-6;        // точність
+  double a = -100, b = 100; // інтервал
 
-    printf("Введіть ваш вік (А): ");
-    scanf("%lf", &A);
+  // Введення N та A з перевіркою
+  do {
+    printf("Введіть N (порядковий номер > 1) і A (вік > 1): ");
+    scanf("%d %d", &N, &A);
+    if (N <= 1 || A <= 1) {
+      printf("Помилка: N та A повинні бути більше 1!\n");
+    }
+  } while (N <= 1 || A <= 1);
 
-    double result = solveEquation(N, A, -100, 100, 0.0001);
-    printf("Розв’язок рівняння %lf * x + %lf = 0: x = %.4lf\n", N, A, result);
+  // Перевірка на існування розв'язку
+  if (equation(a, N, A) * equation(b, N, A) > 0) {
+    printf("Рівняння не має розв'язку в інтервалі [%lf, %lf]\n", a, b);
+  } else {
+    double result = bisection(a, b, N, A, tol);
+    printf("Розв'язок рівняння N*x + A = 0, x= %.6f\n", result);
+  }
 
-    return 0;
+  return 0;
 }
