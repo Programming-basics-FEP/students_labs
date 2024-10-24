@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+void first_ex(int *vowels, int *consonants)
+{
+    char sentence[BUFSIZ];
+    printf("Enter a sentence: \n");
+    fgets(sentence, BUFSIZ, stdin); 
+    for (int i = 0; i < strlen(sentence); i++)
+    {
+        char ch = sentence[i];
+        if (isalpha(ch)) 
+        {
+            if (ch == 'a' || ch == 'A' || ch == 'e' || ch == 'E' || ch == 'i' || ch == 'I' || 
+                ch == 'o' || ch == 'O' || ch == 'u' || ch == 'U') 
+            {
+                (*vowels)++;
+            }
+            else 
+            {
+                (*consonants)++;
+            }
+        }
+    }
+}
+
+void second_ex()
+{
+    int sum = 0;
+    for (int i = 0; i < 100; i++)
+    {
+        if (i == 17 || i == 33)
+        {
+            continue;  
+        }
+        sum += (i + 1); 
+        printf("Додаємо число: %d\n", i + 1); 
+    }
+    printf("Сума членів ряду: %d\n", sum);
+}
+
+void third_ex()
+{
+    int N;
+    float num, sum = 0, avg, min, max;
+    do 
+    {
+        printf("введіть число від 7 до 12: ");
+        scanf("%d", &N);
+    } 
+    while (N < 7 || N > 12);
+    printf("введіть %d дійсних чисел\n", N);
+    for (int i = 0; i < N; i++) 
+    {
+        scanf("%f", &num);
+        sum += num;
+        if (i == 0)
+        {
+            min = max = num;  
+        } 
+        else
+        {
+            if (num < min)
+            {
+                min = num;
+            }
+            if (num > max)
+            {
+                max = num;
+            }
+        }
+    }
+
+    avg = sum / N;
+    printf("Сума: %.2f\n", sum);
+    printf("Середнє арифметичне: %.2f\n", avg);
+    printf("Мінімальне: %.2f\n", min);
+    printf("Максимальне: %.2f\n", max);
+}
+int main()
+{
+    int n, vowels = 0, consonants = 0; 
+    printf("Введіть 1 - first_ex, 2 - second_ex, 3 - third_ex: ");
+    scanf("%d", &n);
+    getchar(); 
+    if (n == 1)
+    {
+        first_ex(&vowels, &consonants); 
+        printf("Голосні: %d\n", vowels);
+        printf("Приголосні: %d\n", consonants);
+    }
+    else if (n == 2)
+    {
+        second_ex(); 
+    }
+    else if (n == 3)
+    {
+        third_ex(); 
+    }
+    else 
+    {
+        printf("Невірний номер, спробуйте ще раз\n");
+    }
+}
