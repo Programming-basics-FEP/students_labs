@@ -1,18 +1,35 @@
 #include <stdio.h>
+#include <math.h>
 
-int recursiveSum(int num) {
-    if (num > 100) return 0;
-    return num + recursiveSum(num + 1);
+double solveEquation(double N, double A, double left, double right, double epsilon) {
+    double middle;
+
+    while (fabs(right - left) > epsilon) {
+        middle = (left + right) / 2;
+        double value = N * middle + A;
+
+        if (value == 0) {
+            return middle;
+        } else if (value > 0) {
+            right = middle;
+        } else {
+            left = middle;
+        }
+    }
+
+    return middle;
 }
 
 int main() {
-    int myNumber;
-    printf("Введіть ваш порядковий номер у журналі: ");
-    scanf("%d", &myNumber);
+    double N, A;
+    printf("Введіть ваш порядковий номер у журналі (N): ");
+    scanf("%lf", &N);
 
-    int sum = recursiveSum(myNumber);
-    printf("Сума чисел від %d до 100: %d\n", myNumber, sum);
+    printf("Введіть ваш вік (А): ");
+    scanf("%lf", &A);
+
+    double result = solveEquation(N, A, -100, 100, 0.0001);
+    printf("Розв’язок рівняння %lf * x + %lf = 0: x = %.4lf\n", N, A, result);
 
     return 0;
 }
-
