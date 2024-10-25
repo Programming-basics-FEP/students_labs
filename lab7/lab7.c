@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h> // for NAN
 
 // 2. функція для перевірки чи число просте
 int task2(int a) {
@@ -16,13 +17,17 @@ int task3(int a) {
 }
 
 // 4. функція для знаходження кореня рівняння методом половинного ділення
-double task4(int N, int A, double l, double r) {
+double task4(int N, int A, double l = -100, double r = 100) {
+    if (N == 0) {
+        printf("рівняння не має розв'язів.\n");
+        return NAN;
+    }
     double m;
-    while ((r-l) >= 1e-5) {
-        m=l+(r-l)/2;
-        if (N*m+A==0) return m;
-        if (N*m+A>0) r=m;
-        else l=m; 
+    while ((r - l) >= 1e-5) {
+        m = l + (r - l) / 2;
+        if (N * m + A == 0) return m;
+        if (N * m + A > 0) r = m;
+        else l = m;
     }
     return m;
 }
@@ -42,7 +47,8 @@ int main() {
     printf("Сума чисел від %d до 100: %d\n", N, task3(N));
 
     // 3. Метод половинного ділення
-    printf("Розв'язок рівняння %d*x + %d = 0: x ≈ %.8f\n", N, A, task4(N, A, -100, 100)); 
-    
+    if (!isnan(task4(N, A)))
+        printf("Розв'язок рівняння %d*x + %d = 0: x ≈ %.8f\n", N, A, result);
+
     return 0;
 }
