@@ -24,9 +24,9 @@ void parse_str(wchar_t* user, Tokens* ans, int* count) {
     int len = wcslen(user);
     for (int i = 0; i < len; i++) {
         if (user[i] == L' ') {
-            i--;
             continue;
         }
+
         ans[i] = is_hol(user[i]) ? Hol : PrHol;
     }
     *count = len;
@@ -36,7 +36,7 @@ int task_two() {
     int i = 1;
     int ans_t2 = 0;
     while (i != 101) {
-      if (i == 33 || i == 2) {
+      if (i == 33 || i == 99) {
         i += 1;
         continue;
       }
@@ -92,7 +92,7 @@ int main() {
     wprintf(L"Кількість голосних: %d\nКількість приголосних: %d", hol_c, prhol_c);
 
     wprintf(L"\n\n--- З А В Д А Н Н Я   2 ---\n");
-    wprintf(L"Сума 100 перших чисел окрім 33 та 2: %d", task_two());
+    wprintf(L"Сума 100 перших чисел окрім 33 та 99: %d", task_two());
 
     wprintf(L"\n\n--- З А В Д А Н Н Я   3 ---\n");
     task_three();

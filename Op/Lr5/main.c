@@ -46,6 +46,7 @@ const char* nums_h[] = {
   "Триста",
   "Чотириста",
   "П'ятсот",
+  "Шістьсот",
   "Сімсот",
   "Вісмсот",
   "Дев'ятсот",
@@ -105,8 +106,7 @@ void identTriangle(Triangle t) {
 }
 
 char* num_to_str(int num) {
-  char* ans = (char *)malloc(50);
-  ans[0] = '\0';
+  char* ans = (char *)malloc(100);
 
   strcat(ans, nums_h[(num / 100) - 1]);
   strcat(ans, " ");
@@ -131,7 +131,7 @@ char* num_to_str(int num) {
 }
 
 int main() {
-  printf("Умовний тернарний оператор (2 > 4): %s", 2 > 4 ? "True\n\n" : "False\n\n");
+  printf("%s", 2 < 4 ? "True\n\n" : "False\n\n");
 
   Triangle t = newTriangle();
   while (checkTriangle(t) == False) {

@@ -22,7 +22,7 @@ int req_sum(int ctr) {
 }
 
 int f(int x) {
-    return 3 * x - 19;
+    return 3 * x + 19;
 }
 
 double bisection_method(double from, double to) {
@@ -40,13 +40,16 @@ double bisection_method(double from, double to) {
 }
 
 int main() {
+    int user;
     printf("---| З А В Д А Н Н Я  1 |---\n");
-    printf("%s", (is_prime(953) ? "True\n" : "False\n"));
+    printf("Уведіть число щоб перевірити чи є воно простим: ");
+    scanf("%d", &user);
+    printf("Число %s ", (is_prime(user) ? "просте\n" : "не просте\n"));
     printf("---| З А В Д А Н Н Я  2 |---\n");
     printf("Рекурсивна сума від 3 до 100: %d\n", req_sum(3));
     printf("---| З А В Д А Н Н Я  3 |---\n");
     int root = bisection_method(-100, 100);
     if (root != -1) {
-        printf("Корень: %f\n", (float)root);
+        printf("Корінь: %f\n", (float)root);
     }
 }
