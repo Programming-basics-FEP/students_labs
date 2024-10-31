@@ -7,7 +7,7 @@ double equation(double x, int N, int A) {
 
 void bisectionMethod(int N, int A, double a, double b, double tolerance) {
     if (equation(a, N, A) * equation(b, N, A) >= 0) {
-        printf("В інтервалі немає кореня.\n");
+        printf("В інтервалі немає кореня або корінь не можна знайти цим методом.\n");
         return;
     }
 
@@ -23,25 +23,25 @@ void bisectionMethod(int N, int A, double a, double b, double tolerance) {
             a = c;
         }
     }
-    printf("x= %.5f\n", c);
+    printf("x = %.5f\n", c);
 }
 
 int main() {
     int N, A;
     double tolerance = 0.00001;
+    double a = -100, b = 100;
 
     printf("Введіть ваш порядковий номер (N): ");
     scanf("%d", &N);
 
-    if (N <= 0) {
-        printf("N <= 0, введіть N > 0.\n");
+    if (N == 0) {
+        printf("N дорівнює 0. Bbeдіть не 0.\n");
         return 0;
     }
 
-    printf("Введіть скільки вам повних балів (A): ");
+    printf("Введіть ваш вік у повних роках (A): ");
     scanf("%d", &A);
 
-    double a = -100, b = 100;
     bisectionMethod(N, A, a, b, tolerance);
 
     return 0;
