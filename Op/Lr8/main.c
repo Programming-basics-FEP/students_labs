@@ -31,11 +31,11 @@ void task_three(int* arr, int sz) {
 }
 
 int* task_two_f(int arr[], int sz) {
-  return (sz>=10) ? &arr[9] : NULL;
+  return (sz>=10) ? &arr[rand()%sz] : NULL;
 }
 
 int* task_two_s(int arr[][10], int sz_f, int sz_s) {
-  return (sz_f > 4 && sz_s > 5) ? &arr[4][5] : NULL;
+  return (sz_f > 4 && sz_s > 5) ? &arr[rand()%sz_f][rand()%sz_s] : NULL;
 }
 
 
@@ -47,7 +47,7 @@ int main() {
 
     printf("---| З А В Д А Н Н Я  1 |---\n");
     show_arr(arr, 10);
-    printf("\n\n");
+    printf("\n");
 
     printf("---| З А В Д А Н Н Я  2 |---\n");
     int arr_s[10][10];
@@ -56,9 +56,8 @@ int main() {
         arr_s[i][j] = rand() % 100;
       }
     }
-    printf("%ls", task_two_f(arr, 10));
-    printf("%ls", task_two_s(arr_s, 10, 10));
-    printf("\n\n");
+    printf("Вказівник на елемент з довільним індексом одновимірного масиву з 10 елементів: %p\n", (void*)task_two_f(arr, 10));
+    printf("Вказівник на елемент з довільним індексом двовимірного масиву з 10 елементів: %p\n", (void*)task_two_s(arr_s, 10, 10));
 
     printf("---| З А В Д А Н Н Я  3 |---\n");
     int arr_t2[20];
