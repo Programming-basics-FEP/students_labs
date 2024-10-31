@@ -1,46 +1,48 @@
-#include <math.h>
 #include <stdio.h>
+#include <math.h>
 
-double equation(double x, int N, int A) { return N * x + A; }
+double equation(double x, int N, int A) {
+    return N * x + A;
+}
 
-double bisection(double a, double b, int N, int A, double tol) {
-  double mid = 0;
-
-  while ((b - a) / 2.0 > tol) {
-    mid = (a + b) / 2.0;
-    if (equation(mid, N, A) == 0.0) {
-      return mid; // точний розв'язок
-    } else if (equation(a, N, A) * equation(mid, N, A) < 0) {
-      b = mid;
-    } else {
-      a = mid;
+void bisectionMethod(int N, int A, double a, double b, double tolerance) {
+    if (equation(a, N, A) * equation(b, N, A) >= 0) {
+        printf("No solution in the given interval.\n");
+        return;
     }
-  }
 
-  return (a + b) / 2.0; // наближений розв'язок
+    double c;
+    while ((b - a) >= tolerance) {
+        c = (a + b) / 2;
+
+        if (equation(c, N, A) == 0.0) {
+            break;
+        } else if (equation(c, N, A) * equation(a, N, A) < 0) {
+            b = c;
+        } else {
+            a = c;
+        }
+    }
+    printf("x= %.5f\n", c);
 }
 
 int main() {
-  int N, A;
-  double tol = 1e-6;        // точність
-  double a = -100, b = 100; // інтервал
+    int N, A;
+    double tolerance = 0.00001;
 
-  // Введення N та A з перевіркою
-  do {
-    printf("Введіть N (порядковий номер > 1) і A (вік > 1): ");
-    scanf("%d %d", &N, &A);
-    if (N <= 1 || A <= 1) {
-      printf("Помилка: N та A повинні бути більше 1!\n");
+    printf("Введіть ваш порядковий номер (N): ");
+    scanf("%d", &N);
+
+    if (N == 0) {
+        printf("N = 0, Введіть N > 0.\n");
+        return 0;
     }
-  } while (N <= 1 || A <= 1);
 
-  // Перевірка на існування розв'язку
-  if (equation(a, N, A) * equation(b, N, A) > 0) {
-    printf("Рівняння не має розв'язку в інтервалі [%lf, %lf]\n", a, b);
-  } else {
-    double result = bisection(a, b, N, A, tol);
-    printf("Розв'язок рівняння N*x + A = 0, x= %.6f\n", result);
-  }
+    printf("Введіть скільки вам повних років (A): ");
+    scanf("%d", &A);
 
-  return 0;
+    double a = -100, b = 100;
+    bisectionMethod(N, A, a, b, tolerance);
+
+    return 0;
 }
