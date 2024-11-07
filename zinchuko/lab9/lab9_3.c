@@ -1,43 +1,38 @@
-#include <ctype.h>
 #include <stdio.h>
-#include <string.h>
+#include <regex.h>
 
-int isValidEmail(char *email) {
-  char *atPos = strchr(email, '@');
-  char *dotPos = strrchr(email, '.');
+int isValidEmail(const char *email) {
+    regex_t regex;
+    int reti;
 
-  if (atPos == NULL || dotPos == NULL || atPos > dotPos) {
-    return 0;
-  }
+    const char *pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
-  if (atPos == email || *(atPos + 1) == '\0') {
-    return 0;
-  }
-
-  if (*(dotPos + 1) == '\0') {
-    return 0;
-  }
-
-  for (char *p = email; *p; p++) {
-    if (!isalnum(*p) && *p != '.' && *p != '@' && *p != '_') {
-      return 0;
+    reti = regcomp(&regex, pattern, REG_EXTENDED);
+    if (reti) {
+        fprintf(stderr, "Could not compile regex\n");
+        return 0;
     }
-  }
 
-  return 1;
+    reti = regexec(&regex, email, 0, NULL, 0);
+    regfree(&regex); 
+
+    if (!reti) {
+        return 1;
+    } else {
+        return 0;  
+    }
 }
 
 int main() {
-  char email[100];
-  printf("Введіть адресу електронної пошти: ");
-  scanf("%s", email);
+    char email[100];
+    printf("Введіть адресу електронної пошти: ");
+    scanf("%s", email);
 
-  if (isValidEmail(email)) {
-    printf("Адреса електронної пошти коректна.\n");
-  } else {
-    printf("Адреса електронної пошти некоректна.\n");
-  }
+    if (isValidEmail(email)) {
+        printf("Адреса електронної пошти коректна.\n");
+    } else {
+        printf("Адреса електронної пошти некоректна.\n");
+    }
 
-  return 0;
+    return 0;
 }
-
