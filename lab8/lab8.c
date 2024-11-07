@@ -59,12 +59,13 @@ int main() {
     int r, c;
     printf("Введіть рядок (0 - 11) та стовпець (0 - 11): ");
     scanf("%d %d", &r, &c);
-    int *el2 = task3b(arr2, r, c);
-    printf("Елемент з індексом [%d][%d]: %d\n", r, c, *el2);
+    
+    if (task3b(arr2, r, c)!=NULL)
+        printf("Елемент з індексом [%d][%d]: %d\n", r, c, task3b(arr2, r, c));
 
     // 4. Пошук мінімального, максимального та суми елементів масиву
     int arr3[20];
-    gen1D(arr3, 20);
+    task2(arr3, 20);
     int mn, mx, sum;
     sum = task4(arr3, 20, &mn, &mx);
     printf("mn: %d, mx: %d, Sum: %d\n", mn, mx, sum);
