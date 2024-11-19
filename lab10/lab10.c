@@ -53,7 +53,7 @@ int main() {
     printf("enter your expression (1.28+3.14): ");
     float a, b;
     char op;
-    scanf("%f%c%f", &a, &op, 1, &b);
+    scanf("%f%c%f", &a, &op, &b);
     float (*ops[4])(float, float) = {_add, _sub, _mul, _div};
     printf("result: %f", ops[(op == '+') ? 0 : (op == '-') ? 1 : (op == '*') ? 2 : (op == '/') ? 3 : -1](a, b));
 
